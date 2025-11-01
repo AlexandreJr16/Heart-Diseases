@@ -1,359 +1,275 @@
-# Projeto 1: Classificação de Doenças Cardíacas - Fundamentos de IA# Projeto 1: Classificação de Doenças Cardíacas - Fundamentos de IA
+# Projeto 1: Classificação de Doenças Cardíacas - Fundamentos de IA
 
-[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)](https://www.python.org/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.13+-orange.svg)](https://www.tensorflow.org/)
+[![Keras](https://img.shields.io/badge/Keras-API-red.svg)](https://keras.io/)
+[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3+-yellow.svg)](https://scikit-learn.org/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.13+-orange.svg)](https://www.tensorflow.org/)[![TensorFlow](https://img.shields.io/badge/TensorFlow-2.13+-orange.svg)](https://www.tensorflow.org/)
-
-[![Keras](https://img.shields.io/badge/Keras-API-red.svg)](https://keras.io/)[![Keras](https://img.shields.io/badge/Keras-API-red.svg)](https://keras.io/)
-
-[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3+-yellow.svg)](https://scikit-learn.org/)[![Scikit-learn](https://img.shields.io/badge/Scikit--learn-1.3+-yellow.svg)](https://scikit-learn.org/)
-
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
-
-> **Disciplina:** Fundamentos de Inteligência Artificial (FIA) > **Disciplina:** Fundamentos de Inteligência Artificial (FIA)
-
-> **Instituição:** Universidade Federal de Alagoas (UFAL) > **Instituição:** Universidade Federal de Alagoas (UFAL)
-
-> **Professor:** Edjard Mota > **Professor:** Edjard Mota
-
-> **Autores:** Alexandre Pereira de Souza Junior, Leonardo Brandão, Vithor Vitório > **Autores:** Alexandre Pereira de Souza Junior, Leonardo Brandão, Vithor Vitório
-
-> **Período:** 2º Semestre de 2025> **Período:** 2º Semestre de 2025
+> **Disciplina:** Fundamentos de Inteligência Artificial (FIA)  
+> **Instituição:** Universidade Federal de Alagoas (UFAL)  
+> **Professor:** Edjard Mota  
+> **Autores:** Alexandre Pereira de Souza Junior, Leonardo Brandão, Vithor Vitório  
+> **Período:** 2º Semestre de 2025
 
 ---
 
-## 📋 Sumário## 📋 Sumário
+## 📋 Sumário
 
-- [Descrição do Projeto](#-descrição-do-projeto)- [Descrição do Projeto](#-descrição-do-projeto)
-
-- [Análise do Dataset](#-análise-do-dataset)- [Análise do Dataset](#-análise-do-dataset)
-
-- [Metodologia](#-metodologia)- [Metodologia](#-metodologia)
-
-- [Resultados e Análise Crítica](#-resultados-e-análise-crítica)- [Resultados e Análise Crítica](#-resultados-e-análise-crítica)
-
-- [Conclusões](#-conclusões)- [Conclusões](#-conclusões)
-
-- [Como Executar](#-como-executar)- [Como Executar](#-como-executar)
-
-- [Tecnologias Utilizadas](#️-tecnologias-utilizadas)- [Tecnologias Utilizadas](#️-tecnologias-utilizadas)
-
-- [Referências](#-referências)- [Referências](#-referências)
+- [Descrição do Projeto](#-descrição-do-projeto)
+- [Análise do Dataset](#-análise-do-dataset)
+- [Metodologia](#-metodologia)
+- [Resultados e Análise Crítica](#-resultados-e-análise-crítica)
+- [Conclusões](#-conclusões)
+- [Como Executar](#-como-executar)
+- [Tecnologias Utilizadas](#️-tecnologias-utilizadas)
+- [Referências](#-referências)
 
 ---
 
-## 📖 Descrição do Projeto## 📖 Descrição do Projeto
+## 📖 Descrição do Projeto
 
-### Contexto e Objetivo### Contexto e Objetivo
+### Contexto e Objetivo
 
-As **doenças cardiovasculares** são a principal causa de morte em todo o mundo. A detecção precoce é, portanto, um desafio crítico para a saúde pública.As **doenças cardiovasculares** são a principal causa de morte em todo o mundo. A detecção precoce é, portanto, um desafio crítico para a saúde pública.
+As **doenças cardiovasculares** são a principal causa de morte em todo o mundo. A detecção precoce é, portanto, um desafio crítico para a saúde pública.
 
-O objetivo deste projeto é desenvolver um **classificador binário** utilizando Redes Neurais Artificiais (ANN) para prever a **presença (1)** ou **ausência (0)** de doença cardíaca em pacientes, com base em 13 atributos clínicos.O objetivo deste projeto é desenvolver um **classificador binário** utilizando Redes Neurais Artificiais (ANN) para prever a **presença (1)** ou **ausência (0)** de doença cardíaca em pacientes, com base em 13 atributos clínicos.
+O objetivo deste projeto é desenvolver um **classificador binário** utilizando Redes Neurais Artificiais (ANN) para prever a **presença (1)** ou **ausência (0)** de doença cardíaca em pacientes, com base em 13 atributos clínicos.
 
-### Especificações Técnicas### Especificações Técnicas
+### Especificações Técnicas
 
-- **Tipo:** Classificação Binária Supervisionada- **Tipo:** Classificação Binária Supervisionada
-
-- **Modelo:** Rede Neural Feedforward com 2 camadas ocultas- **Modelo:** Rede Neural Feedforward com 2 camadas ocultas
-
-- **Ativações:** ReLU (camadas ocultas), Sigmoid (saída)- **Ativações:** ReLU (camadas ocultas), Sigmoid (saída)
-
-- **Regularização:** Dropout (25%) + L2 (0.001)- **Regularização:** Dropout (25%) + L2 (0.001)
-
-- **Métricas:** Acurácia, Precisão, Recall e Matriz de Confusão- **Métricas:** Acurácia, Precisão, Recall e Matriz de Confusão
+- **Tipo:** Classificação Binária Supervisionada
+- **Modelo:** Rede Neural Feedforward com 2 camadas ocultas
+- **Ativações:** ReLU (camadas ocultas), Sigmoid (saída)
+- **Regularização:** Dropout (25%) + L2 (0.001)
+- **Métricas:** Acurácia, Precisão, Recall e Matriz de Confusão
 
 ---
 
-## 📊 Análise do Dataset## 📊 Análise do Dataset
+## 📊 Análise do Dataset
 
-### Fonte de Dados e Limpeza### Fonte de Dados e Limpeza
+### Fonte de Dados e Limpeza
 
-Utilizamos o dataset clássico **"Heart Disease UCI (Cleveland)"**, que é o benchmark histórico para este problema.Utilizamos o dataset clássico **"Heart Disease UCI (Cleveland)"**, que é o benchmark histórico para este problema.
+Utilizamos o dataset clássico **"Heart Disease UCI (Cleveland)"**, que é o benchmark histórico para este problema.
 
-- **Fonte:** UCI Machine Learning Repository- **Fonte:** UCI Machine Learning Repository
+- **Fonte:** UCI Machine Learning Repository
+- **URL:** http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data
+- **Amostras Originais:** 303 pacientes
+- **Limpeza:** O dataset original continha 6 linhas com valores nulos (marcados como \`?\`). Essas linhas foram removidas.
+- **Amostras Válidas (Usadas):** 297 pacientes
+- **Transformação do Alvo:** A variável \`target\` original (0-4) foi convertida para binária (0 = saudável, 1 = doente).
+- **Balanceamento:** O dataset resultante é ligeiramente desbalanceado (160 Saudáveis vs. 137 Doentes).
 
-- **URL:** http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data- **URL:** http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data
+### Atributos Clínicos
 
-- **Amostras Originais:** 303 pacientes- **Amostras Originais:** 303 pacientes
-
-- **Limpeza:** O dataset original continha 6 linhas com valores nulos (marcados como `?`). Essas linhas foram removidas.- **Limpeza:** O dataset original continha 6 linhas com valores nulos (marcados como \`?\`). Essas linhas foram removidas.
-
-- **Amostras Válidas (Usadas):** 297 pacientes- **Amostras Válidas (Usadas):** 297 pacientes
-
-- **Transformação do Alvo:** A variável `target` original (0-4) foi convertida para binária (0 = saudável, 1 = doente).- **Transformação do Alvo:** A variável \`target\` original (0-4) foi convertida para binária (0 = saudável, 1 = doente).
-
-- **Balanceamento:** O dataset resultante é ligeiramente desbalanceado (160 Saudáveis vs. 137 Doentes).- **Balanceamento:** O dataset resultante é ligeiramente desbalanceado (160 Saudáveis vs. 137 Doentes).
-
-### Atributos Clínicos### Atributos Clínicos
-
-Foram utilizadas **13 features** para a predição: `age`, `sex`, `cp` (tipo de dor no peito), `trestbps` (pressão arterial), `chol` (colesterol), `fbs` (glicemia), `restecg` (eletrocardiograma), `thalach` (freq. cardíaca máx.), `exang` (angina induzida), `oldpeak` (depressão ST), `slope` (inclinação ST), `ca` (vasos principais), `thal` (talassemia).Foram utilizadas **13 features** para a predição: \`age\`, \`sex\`, \`cp\` (tipo de dor no peito), \`trestbps\` (pressão arterial), \`chol\` (colesterol), \`fbs\` (glicemia), \`restecg\` (eletrocardiograma), \`thalach\` (freq. cardíaca máx.), \`exang\` (angina induzida), \`oldpeak\` (depressão ST), \`slope\` (inclinação ST), \`ca\` (vasos principais), \`thal\` (talassemia).
+Foram utilizadas **13 features** para a predição: \`age\`, \`sex\`, \`cp\` (tipo de dor no peito), \`trestbps\` (pressão arterial), \`chol\` (colesterol), \`fbs\` (glicemia), \`restecg\` (eletrocardiograma), \`thalach\` (freq. cardíaca máx.), \`exang\` (angina induzida), \`oldpeak\` (depressão ST), \`slope\` (inclinação ST), \`ca\` (vasos principais), \`thal\` (talassemia).
 
 ---
 
-## 🧠 Metodologia## 🧠 Metodologia
+## 🧠 Metodologia
 
-O projeto seguiu um pipeline rigoroso de Data Science.O projeto seguiu um pipeline rigoroso de Data Science.
+O projeto seguiu um pipeline rigoroso de Data Science.
 
-### Pipeline de Pré-processamento### Pipeline de Pré-processamento
+### Pipeline de Pré-processamento
 
-1. **Carga e Limpeza:** Carregamento dos dados da UCI, tratamento de nulos (`?`) e transformação da `target` para binária.1. **Carga e Limpeza:** Carregamento dos dados da UCI, tratamento de nulos (\`?\`) e transformação da \`target\` para binária.
+1. **Carga e Limpeza:** Carregamento dos dados da UCI, tratamento de nulos (\`?\`) e transformação da \`target\` para binária.
+2. **Divisão de Dados (Split):** Separação dos dados em 80% para treino (237 amostras) e 20% para teste (60 amostras). Foi usada a estratificação (\`stratify=y\`) para manter a proporção de classes em ambos os conjuntos.
+3. **Normalização (Scaling):** Aplicação do \`StandardScaler\` para normalizar os dados (média 0, desvio padrão 1).
 
-2. **Divisão de Dados (Split):** Separação dos dados em 80% para treino (237 amostras) e 20% para teste (60 amostras). Foi usada a estratificação (`stratify=y`) para manter a proporção de classes em ambos os conjuntos.2. **Divisão de Dados (Split):** Separação dos dados em 80% para treino (237 amostras) e 20% para teste (60 amostras). Foi usada a estratificação (\`stratify=y\`) para manter a proporção de classes em ambos os conjuntos.
+### Arquitetura da Rede Neural
 
-3. **Normalização (Scaling):** Aplicação do `StandardScaler` para normalizar os dados (média 0, desvio padrão 1).3. **Normalização (Scaling):** Aplicação do \`StandardScaler\` para normalizar os dados (média 0, desvio padrão 1).
+\`\`\`
+Input Layer (13 features)
+↓
+Dense(16, ReLU) + L2 Regularization + Dropout(0.25)
+↓
+Dense(8, ReLU) + L2 Regularization + Dropout(0.25)
+↓
+Output(1, Sigmoid) → Probabilidade [0, 1]
+\`\`\`
 
-### Arquitetura da Rede Neural### Arquitetura da Rede Neural
+**Configuração de Treinamento:**
 
-```\`\`\`
+- **Otimizador:** Adam
+- **Função de Perda:** \`binary_crossentropy\`
+- **Épocas:** 100
+- **Batch Size:** 10
+- **Validação:** Conjunto de teste
 
-Input Layer (13 features)Input Layer (13 features)
+### Importância da Normalização e Prevenção de Data Leakage
 
-    ↓    ↓
+Esta foi a etapa técnica **mais crítica**:
 
-Dense(16, ReLU) + L2 Regularization + Dropout(0.25)Dense(16, ReLU) + L2 Regularization + Dropout(0.25)
+**Por que Normalizar?**
 
-    ↓    ↓
+Redes Neurais são sensíveis a escalas diferentes (ex: \`chol\` 126-564 vs \`sex\` 0-1). A normalização garante uma convergência rápida e estável.
 
-Dense(8, ReLU) + L2 Regularization + Dropout(0.25)Dense(8, ReLU) + L2 Regularization + Dropout(0.25)
+**Prevenção de Data Leakage:**
 
-    ↓    ↓
+Para evitar que o modelo "visse" os dados de teste, a ordem correta foi aplicada:
 
-Output(1, Sigmoid) → Probabilidade [0, 1]Output(1, Sigmoid) → Probabilidade [0, 1]
+\`\`\`python
 
-```\`\`\`
+# ✅ CORRETO
 
-**Configuração de Treinamento:\*\***Configuração de Treinamento:\*\*
+scaler.fit(X_train) # Aprende apenas do treino
+X_train_scaled = scaler.transform(X_train)
+X_test_scaled = scaler.transform(X_test)
 
-- **Otimizador:** Adam- **Otimizador:** Adam
+# ❌ ERRADO (causa data leakage)
 
-- **Função de Perda:** `binary_crossentropy`- **Função de Perda:** \`binary_crossentropy\`
+scaler.fit(X) # Vaza informação do teste
+\`\`\`
 
-- **Épocas:** 100- **Épocas:** 100
-
-- **Batch Size:** 10- **Batch Size:** 10
-
-- **Validação:** Conjunto de teste- **Validação:** Conjunto de teste
-
-### Importância da Normalização e Prevenção de Data Leakage### Importância da Normalização e Prevenção de Data Leakage
-
-Esta foi a etapa técnica **mais crítica**:Esta foi a etapa técnica **mais crítica**:
-
-**Por que Normalizar?** **Por que Normalizar?**
-
-Redes Neurais são sensíveis a escalas diferentes (ex: `chol` 126-564 vs `sex` 0-1). A normalização garante uma convergência rápida e estável.Redes Neurais são sensíveis a escalas diferentes (ex: \`chol\` 126-564 vs \`sex\` 0-1). A normalização garante uma convergência rápida e estável.
-
-**Prevenção de Data Leakage:** **Prevenção de Data Leakage:**
-
-Para evitar que o modelo "visse" os dados de teste, a ordem correta foi aplicada:Para evitar que o modelo "visse" os dados de teste, a ordem correta foi aplicada:
-
-```python\`\`\`python
-
-# ✅ CORRETO# ✅ CORRETO
-
-scaler.fit(X_train) # Aprende apenas do treinoscaler.fit(X_train) # Aprende apenas do treino
-
-X_train_scaled = scaler.transform(X_train)X_train_scaled = scaler.transform(X_train)
-
-X_test_scaled = scaler.transform(X_test)X_test_scaled = scaler.transform(X_test)
-
-# ❌ ERRADO (causa data leakage)# ❌ ERRADO (causa data leakage)
-
-scaler.fit(X) # Vaza informação do testescaler.fit(X) # Vaza informação do teste
-
-```\`\`\`
-
-Esta metodologia garante que os resultados de **83.3%** sejam uma estimativa honesta do desempenho do modelo em dados novos.Esta metodologia garante que os resultados de **83.3%** sejam uma estimativa honesta do desempenho do modelo em dados novos.
+Esta metodologia garante que os resultados de **83.3%** sejam uma estimativa honesta do desempenho do modelo em dados novos.
 
 ---
 
-## 📈 Resultados e Análise Crítica## 📈 Resultados e Análise Crítica
+## 📈 Resultados e Análise Crítica
 
-### Métricas de Performance### Métricas de Performance
+### Métricas de Performance
 
-O modelo foi avaliado no conjunto de teste de **60 amostras**.O modelo foi avaliado no conjunto de teste de **60 amostras**.
+O modelo foi avaliado no conjunto de teste de **60 amostras**.
 
-| Métrica | Valor || Métrica | Valor |
+| Métrica               | Valor  |
+| --------------------- | ------ |
+| **Acurácia Global**   | 83.33% |
+| **Precisão (Doente)** | 84.6%  |
+| **Recall (Doente)**   | 78.6%  |
+| **F1-Score (Doente)** | 0.81   |
 
-|---------|-------||---------|-------|
+### Matriz de Confusão (Análise Crítica)
 
-| **Acurácia Global** | 83.33% || **Acurácia Global** | 83.33% |
+A acurácia sozinha é **insuficiente**. A matriz de confusão revela o custo dos erros.
 
-| **Precisão (Doente)** | 84.6% || **Precisão (Doente)** | 84.6% |
+\`\`\`
+Predito: Saudável Predito: Doente
+Real: Saudável 26 4
+Real: Doente 6 24
+\`\`\`
 
-| **Recall (Doente)** | 78.6% || **Recall (Doente)** | 78.6% |
+**Análise dos Erros:**
 
-| **F1-Score (Doente)** | 0.81 || **F1-Score (Doente)** | 0.81 |
+- **Falsos Positivos (FP):** 4 casos. Pacientes saudáveis classificados como doentes. O custo é moderado (exames adicionais, ansiedade).
+- **Falsos Negativos (FN):** 6 casos. Pacientes doentes classificados como saudáveis. **Este é o erro crítico**, pois 6 pacientes não receberiam tratamento.
 
-### Matriz de Confusão (Análise Crítica)### Matriz de Confusão (Análise Crítica)
+**Conclusão Médica:** O Recall de 78.6% (o modelo encontrou 24 de 30 pacientes doentes) é a métrica mais importante. Para uso clínico, este modelo serviria como **ferramenta de triagem**, mas o threshold de decisão (0.5) precisaria ser ajustado para reduzir os 6 Falsos Negativos, mesmo ao custo de aumentar os Falsos Positivos.
 
-A acurácia sozinha é **insuficiente**. A matriz de confusão revela o custo dos erros.A acurácia sozinha é **insuficiente**. A matriz de confusão revela o custo dos erros.
+### Análise do Treinamento (Overfitting)
 
-```\`\`\`
+O modelo foi treinado por 100 épocas. Os gráficos de Acurácia/Perda mostraram:
 
-                    Predito: Saudável    Predito: Doente                    Predito: Saudável    Predito: Doente
-
-Real: Saudável 26 4Real: Saudável 26 4
-
-Real: Doente 6 24Real: Doente 6 24
-
-```\`\`\`
-
-**Análise dos Erros:\*\***Análise dos Erros:\*\*
-
-- **Falsos Positivos (FP):** 4 casos. Pacientes saudáveis classificados como doentes. O custo é moderado (exames adicionais, ansiedade).- **Falsos Positivos (FP):** 4 casos. Pacientes saudáveis classificados como doentes. O custo é moderado (exames adicionais, ansiedade).
-
-- **Falsos Negativos (FN):** 6 casos. Pacientes doentes classificados como saudáveis. **Este é o erro crítico**, pois 6 pacientes não receberiam tratamento.- **Falsos Negativos (FN):** 6 casos. Pacientes doentes classificados como saudáveis. **Este é o erro crítico**, pois 6 pacientes não receberiam tratamento.
-
-**Conclusão Médica:** O Recall de 78.6% (o modelo encontrou 24 de 30 pacientes doentes) é a métrica mais importante. Para uso clínico, este modelo serviria como **ferramenta de triagem**, mas o threshold de decisão (0.5) precisaria ser ajustado para reduzir os 6 Falsos Negativos, mesmo ao custo de aumentar os Falsos Positivos.**Conclusão Médica:** O Recall de 78.6% (o modelo encontrou 24 de 30 pacientes doentes) é a métrica mais importante. Para uso clínico, este modelo serviria como **ferramenta de triagem**, mas o threshold de decisão (0.5) precisaria ser ajustado para reduzir os 6 Falsos Negativos, mesmo ao custo de aumentar os Falsos Positivos.
-
-### Análise do Treinamento (Overfitting)### Análise do Treinamento (Overfitting)
-
-O modelo foi treinado por 100 épocas. Os gráficos de Acurácia/Perda mostraram:O modelo foi treinado por 100 épocas. Os gráficos de Acurácia/Perda mostraram:
-
-- **Convergência Rápida:** O modelo aprendeu os padrões principais nas primeiras 30-40 épocas.- **Convergência Rápida:** O modelo aprendeu os padrões principais nas primeiras 30-40 épocas.
-
-- **Overfitting Detectado:** Após 40 épocas, a perda de validação começou a subir enquanto a perda de treino continuava caindo.- **Overfitting Detectado:** Após 40 épocas, a perda de validação começou a subir enquanto a perda de treino continuava caindo.
-
-- **Conclusão:** Este comportamento é **esperado e normal** para um dataset pequeno (237 amostras de treino). As técnicas de regularização (Dropout + L2) foram eficazes em limitar o overfitting, permitindo ao modelo atingir 83.3% de acurácia.- **Conclusão:** Este comportamento é **esperado e normal** para um dataset pequeno (237 amostras de treino). As técnicas de regularização (Dropout + L2) foram eficazes em limitar o overfitting, permitindo ao modelo atingir 83.3% de acurácia.
+- **Convergência Rápida:** O modelo aprendeu os padrões principais nas primeiras 30-40 épocas.
+- **Overfitting Detectado:** Após 40 épocas, a perda de validação começou a subir enquanto a perda de treino continuava caindo.
+- **Conclusão:** Este comportamento é **esperado e normal** para um dataset pequeno (237 amostras de treino). As técnicas de regularização (Dropout + L2) foram eficazes em limitar o overfitting, permitindo ao modelo atingir 83.3% de acurácia.
 
 ---
 
-## 💡 Conclusões## 💡 Conclusões
+## 💡 Conclusões
 
-### Eficácia do Modelo e Lições Aprendidas### Eficácia do Modelo e Lições Aprendidas
+### Eficácia do Modelo e Lições Aprendidas
 
-O modelo **cumpriu todos os requisitos técnicos** do projeto, entregando um classificador funcional com uma acurácia realista de **83.33%**.O modelo **cumpriu todos os requisitos técnicos** do projeto, entregando um classificador funcional com uma acurácia realista de **83.33%**.
+O modelo **cumpriu todos os requisitos técnicos** do projeto, entregando um classificador funcional com uma acurácia realista de **83.33%**.
 
-**Principais Aprendizados:\*\***Principais Aprendizados:\*\*
+**Principais Aprendizados:**
 
-1. **Ordem das Operações é Crítica:** O pipeline correto (Split → Fit → Transform) é fundamental para evitar data leakage e obter resultados válidos.1. **Ordem das Operações é Crítica:** O pipeline correto (Split → Fit → Transform) é fundamental para evitar data leakage e obter resultados válidos.
+1. **Ordem das Operações é Crítica:** O pipeline correto (Split → Fit → Transform) é fundamental para evitar data leakage e obter resultados válidos.
+2. **Métricas Contextuais > Acurácia:** Em medicina, o Recall e a análise dos Falsos Negativos são mais importantes que a acurácia total.
+3. **Overfitting é Esperado:** Em datasets pequenos, o overfitting não é um "erro", mas um fenômeno a ser monitorado e controlado com regularização.
 
-2. **Métricas Contextuais > Acurácia:** Em medicina, o Recall e a análise dos Falsos Negativos são mais importantes que a acurácia total.2. **Métricas Contextuais > Acurácia:** Em medicina, o Recall e a análise dos Falsos Negativos são mais importantes que a acurácia total.
+### Aplicabilidade Clínica
 
-3. **Overfitting é Esperado:** Em datasets pequenos, o overfitting não é um "erro", mas um fenômeno a ser monitorado e controlado com regularização.3. **Overfitting é Esperado:** Em datasets pequenos, o overfitting não é um "erro", mas um fenômeno a ser monitorado e controlado com regularização.
+Este modelo serve como uma excelente **prova de conceito**.
 
-### Aplicabilidade Clínica### Aplicabilidade Clínica
+**Uso Recomendado:**
 
-Este modelo serve como uma excelente **prova de conceito**.Este modelo serve como uma excelente **prova de conceito**.
+- Ferramenta de **triagem inicial** ou apoio à decisão médica (jamais como diagnóstico definitivo).
 
-**Uso Recomendado:** **Uso Recomendado:**
+**Limitações:**
 
-- Ferramenta de **triagem inicial** ou apoio à decisão médica (jamais como diagnóstico definitivo).- Ferramenta de **triagem inicial** ou apoio à decisão médica (jamais como diagnóstico definitivo).
-
-**Limitações:** **Limitações:**
-
-- O número de 6 Falsos Negativos é alto para uso clínico autônomo. - O número de 6 Falsos Negativos é alto para uso clínico autônomo.
-
-- O modelo exigiria validação em datasets maiores e ajuste de threshold para priorizar o Recall.- O modelo exigiria validação em datasets maiores e ajuste de threshold para priorizar o Recall.
+- O número de 6 Falsos Negativos é alto para uso clínico autônomo.
+- O modelo exigiria validação em datasets maiores e ajuste de threshold para priorizar o Recall.
 
 ---
 
-## 🚀 Como Executar## 🚀 Como Executar
+## 🚀 Como Executar
 
-### Pré-requisitos### Pré-requisitos
+### Pré-requisitos
 
-- Python 3.8+- Python 3.8+
+- Python 3.8+
+- Jupyter Notebook ou JupyterLab
+- Git
 
-- Jupyter Notebook ou JupyterLab- Jupyter Notebook ou JupyterLab
+### Instalação
 
-- Git- Git
+**1. Clone o repositório:**
 
-### Instalação### Instalação
+\`\`\`bash
+git clone https://github.com/AlexandreJr16/Heart-Diseases.git
+cd Heart-Diseases
+\`\`\`
 
-**1. Clone o repositório:\*\***1. Clone o repositório:\*\*
+**2. Instale as dependências:**
 
-```bash\`\`\`bash
+\`\`\`bash
+pip install -r requirements.txt
+\`\`\`
 
-git clone https://github.com/AlexandreJr16/Heart-Diseases.gitgit clone https://github.com/AlexandreJr16/Heart-Diseases.git
+Ou manualmente:
 
-cd Heart-Diseasescd Heart-Diseases
+\`\`\`bash
+pip install pandas numpy tensorflow scikit-learn matplotlib seaborn
+\`\`\`
 
-```\`\`\`
+**3. Execute o notebook:**
 
-**2. Instale as dependências:\*\***2. Instale as dependências:\*\*
+\`\`\`bash
+jupyter notebook heart-diseases.ipynb
+\`\`\`
 
-```bash\`\`\`bash
-
-pip install -r requirements.txtpip install -r requirements.txt
-
-```\`\`\`
-
-Ou manualmente:Ou manualmente:
-
-```bash\`\`\`bash
-
-pip install pandas numpy tensorflow scikit-learn matplotlib seabornpip install pandas numpy tensorflow scikit-learn matplotlib seaborn
-
-```\`\`\`
-
-**3. Execute o notebook:\*\***3. Execute o notebook:\*\*
-
-```bash\`\`\`bash
-
-jupyter notebook heart-diseases.ipynbjupyter notebook heart-diseases.ipynb
-
-```\`\`\`
-
-**4. Execute as células sequencialmente** (Shift + Enter).**4. Execute as células sequencialmente** (Shift + Enter).
+**4. Execute as células sequencialmente** (Shift + Enter).
 
 ---
 
-## 🛠️ Tecnologias Utilizadas## 🛠️ Tecnologias Utilizadas
+## 🛠️ Tecnologias Utilizadas
 
-| Tecnologia | Versão | Função || Tecnologia | Versão | Função |
-
-|------------|--------|--------||------------|--------|--------|
-
-| **Python** | 3.8+ | Linguagem de programação || **Python** | 3.8+ | Linguagem de programação |
-
-| **TensorFlow** | 2.13.0+ | Framework de Deep Learning || **TensorFlow** | 2.13.0+ | Framework de Deep Learning |
-
-| **Keras** | API | Construção da Rede Neural || **Keras** | API | Construção da Rede Neural |
-
-| **Scikit-learn** | 1.3.0+ | Pré-processamento e métricas || **Scikit-learn** | 1.3.0+ | Pré-processamento e métricas |
-
-| **Pandas** | 2.0.0+ | Manipulação de dados || **Pandas** | 2.0.0+ | Manipulação de dados |
-
-| **NumPy** | 1.24.0+ | Computação numérica || **NumPy** | 1.24.0+ | Computação numérica |
-
-| **Matplotlib** | 3.7.0+ | Visualização de dados || **Matplotlib** | 3.7.0+ | Visualização de dados |
-
-| **Seaborn** | 0.12.0+ | Visualização estatística || **Seaborn** | 0.12.0+ | Visualização estatística |
+| Tecnologia       | Versão  | Função                       |
+| ---------------- | ------- | ---------------------------- |
+| **Python**       | 3.8+    | Linguagem de programação     |
+| **TensorFlow**   | 2.13.0+ | Framework de Deep Learning   |
+| **Keras**        | API     | Construção da Rede Neural    |
+| **Scikit-learn** | 1.3.0+  | Pré-processamento e métricas |
+| **Pandas**       | 2.0.0+  | Manipulação de dados         |
+| **NumPy**        | 1.24.0+ | Computação numérica          |
+| **Matplotlib**   | 3.7.0+  | Visualização de dados        |
+| **Seaborn**      | 0.12.0+ | Visualização estatística     |
 
 ---
 
-## 📚 Referências## 📚 Referências
+## 📚 Referências
 
-- **Dataset:** Janosi, A., Steinbrunn, W., Pfisterer, M., & Detrano, R. (1988). Heart Disease Data Set. UCI Machine Learning Repository.- **Dataset:** Janosi, A., Steinbrunn, W., Pfisterer, M., & Detrano, R. (1988). Heart Disease Data Set. UCI Machine Learning Repository.
-
-- **Teoria:** Goodfellow, I., Bengio, Y., & Courville, A. (2016). _Deep Learning_. MIT Press.- **Teoria:** Goodfellow, I., Bengio, Y., & Courville, A. (2016). _Deep Learning_. MIT Press.
-
-- **Implementação:** Géron, A. (2019). _Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow_. O'Reilly Media.- **Implementação:** Géron, A. (2019). _Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow_. O'Reilly Media.
+- **Dataset:** Janosi, A., Steinbrunn, W., Pfisterer, M., & Detrano, R. (1988). Heart Disease Data Set. UCI Machine Learning Repository.
+- **Teoria:** Goodfellow, I., Bengio, Y., & Courville, A. (2016). _Deep Learning_. MIT Press.
+- **Implementação:** Géron, A. (2019). _Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow_. O'Reilly Media.
 
 ---
 
-## 👥 Autores## 👥 Autores
+## 👥 Autores
 
-**Alexandre Pereira de Souza Junior** **Alexandre Pereira de Souza Junior**
+**Alexandre Pereira de Souza Junior**  
+**Leonardo Brandão**  
+**Vithor Vitório**
 
-**Leonardo Brandão** **Leonardo Brandão**
-
-**Vithor Vitório\*\***Vithor Vitório\*\*
-
-**Instituição:** Universidade Federal de Alagoas (UFAL) **Instituição:** Universidade Federal de Alagoas (UFAL)
-
-**Disciplina:** Fundamentos de Inteligência Artificial (FIA) **Disciplina:** Fundamentos de Inteligência Artificial (FIA)
-
-**Professor:** Edjard Mota **Professor:** Edjard Mota
-
-**Período:** 2º Semestre de 2025**Período:** 2º Semestre de 2025
+**Instituição:** Universidade Federal de Alagoas (UFAL)  
+**Disciplina:** Fundamentos de Inteligência Artificial (FIA)  
+**Professor:** Edjard Mota  
+**Período:** 2º Semestre de 2025
 
 ---
 
-<div align="center"><div align="center">
+<div align="center">
 
-**⭐ Se este projeto foi útil para seus estudos, considere dar uma estrela no repositório!\*\***⭐ Se este projeto foi útil para seus estudos, considere dar uma estrela no repositório!\*\*
+**⭐ Se este projeto foi útil para seus estudos, considere dar uma estrela no repositório!**
 
-Desenvolvido com dedicação para a disciplina de Fundamentos de IA 🧠❤️Desenvolvido com dedicação para a disciplina de Fundamentos de IA 🧠❤️
+Desenvolvido com dedicação para a disciplina de Fundamentos de IA 🧠❤️
 
-</div></div>
+</div>
