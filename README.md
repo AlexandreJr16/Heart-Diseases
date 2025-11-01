@@ -7,7 +7,7 @@
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 > **Disciplina:** Fundamentos de Inteligência Artificial (FIA)  
-> **Instituição:** Universidade Federal de Alagoas (UFAL)  
+> **Instituição:** Universidade Federal do Amazonas (UFAM)  
 > **Professor:** Edjard Mota  
 > **Autores:** Alexandre Pereira de Souza Junior, Leonardo Brandão, Vithor Vitório  
 > **Período:** 2º Semestre de 2025
@@ -71,9 +71,9 @@ O projeto seguiu um pipeline rigoroso de Data Science.
 
 ### Pipeline de Pré-processamento
 
-1. **Carga e Limpeza:** Carregamento dos dados da UCI, tratamento de nulos (\`?\`) e transformação da \`target\` para binária.
-2. **Divisão de Dados (Split):** Separação dos dados em 80% para treino (237 amostras) e 20% para teste (60 amostras). Foi usada a estratificação (\`stratify=y\`) para manter a proporção de classes em ambos os conjuntos.
-3. **Normalização (Scaling):** Aplicação do \`StandardScaler\` para normalizar os dados (média 0, desvio padrão 1).
+1. **Carga e Limpeza:** Carregamento dos dados da UCI, tratamento de nulos (`?`) e transformação da `target` para binária.
+2. **Divisão de Dados (Split):** Separação dos dados em 80% para treino (237 amostras) e 20% para teste (60 amostras). Foi usada a estratificação (`stratify=y`) para manter a proporção de classes em ambos os conjuntos.
+3. **Normalização (Scaling):** Aplicação do `StandardScaler` para normalizar os dados (média 0, desvio padrão 1).
 
 ### Arquitetura da Rede Neural
 
@@ -92,7 +92,7 @@ Output(1, Sigmoid) → Probabilidade [0, 1]
 **Configuração de Treinamento:**
 
 - **Otimizador:** Adam
-- **Função de Perda:** \`binary_crossentropy\`
+- **Função de Perda:** `binary_crossentropy`
 - **Épocas:** 100
 - **Batch Size:** 10
 - **Validação:** Conjunto de teste
@@ -103,7 +103,7 @@ Esta foi a etapa técnica **mais crítica**:
 
 **Por que Normalizar?**
 
-Redes Neurais são sensíveis a escalas diferentes (ex: \`chol\` 126-564 vs \`sex\` 0-1). A normalização garante uma convergência rápida e estável.
+Redes Neurais são sensíveis a escalas diferentes (ex: `chol` 126-564 vs `sex` 0-1). A normalização garante uma convergência rápida e estável.
 
 **Prevenção de Data Leakage:**
 
