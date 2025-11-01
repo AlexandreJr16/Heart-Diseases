@@ -54,14 +54,14 @@ Utilizamos o dataset clássico **"Heart Disease UCI (Cleveland)"**, que é o ben
 - **Fonte:** UCI Machine Learning Repository
 - **URL:** http://archive.ics.uci.edu/ml/machine-learning-databases/heart-disease/processed.cleveland.data
 - **Amostras Originais:** 303 pacientes
-- **Limpeza:** O dataset original continha 6 linhas com valores nulos (marcados como \`?\`). Essas linhas foram removidas.
+- **Limpeza:** O dataset original continha 6 linhas com valores nulos (marcados como `?`). Essas linhas foram removidas.
 - **Amostras Válidas (Usadas):** 297 pacientes
-- **Transformação do Alvo:** A variável \`target\` original (0-4) foi convertida para binária (0 = saudável, 1 = doente).
+- **Transformação do Alvo:** A variável `target` original (0-4) foi convertida para binária (0 = saudável, 1 = doente).
 - **Balanceamento:** O dataset resultante é ligeiramente desbalanceado (160 Saudáveis vs. 137 Doentes).
 
 ### Atributos Clínicos
 
-Foram utilizadas **13 features** para a predição: \`age\`, \`sex\`, \`cp\` (tipo de dor no peito), \`trestbps\` (pressão arterial), \`chol\` (colesterol), \`fbs\` (glicemia), \`restecg\` (eletrocardiograma), \`thalach\` (freq. cardíaca máx.), \`exang\` (angina induzida), \`oldpeak\` (depressão ST), \`slope\` (inclinação ST), \`ca\` (vasos principais), \`thal\` (talassemia).
+Foram utilizadas **13 features** para a predição: `age`, `sex`, `cp` (tipo de dor no peito), `trestbps` (pressão arterial), `chol` (colesterol), `fbs` (glicemia), `restecg` (eletrocardiograma), `thalach` (freq. cardíaca máx.), `exang` (angina induzida), `oldpeak` (depressão ST), `slope` (inclinação ST), `ca` (vasos principais), `thal` (talassemia).
 
 ---
 
@@ -77,7 +77,8 @@ O projeto seguiu um pipeline rigoroso de Data Science.
 
 ### Arquitetura da Rede Neural
 
-\`\`\`
+```
+
 Input Layer (13 features)
 ↓
 Dense(16, ReLU) + L2 Regularization + Dropout(0.25)
@@ -85,7 +86,8 @@ Dense(16, ReLU) + L2 Regularization + Dropout(0.25)
 Dense(8, ReLU) + L2 Regularization + Dropout(0.25)
 ↓
 Output(1, Sigmoid) → Probabilidade [0, 1]
-\`\`\`
+```
+
 
 **Configuração de Treinamento:**
 
@@ -107,7 +109,7 @@ Redes Neurais são sensíveis a escalas diferentes (ex: \`chol\` 126-564 vs \`se
 
 Para evitar que o modelo "visse" os dados de teste, a ordem correta foi aplicada:
 
-\`\`\`python
+```python
 
 # ✅ CORRETO
 
@@ -115,10 +117,9 @@ scaler.fit(X_train) # Aprende apenas do treino
 X_train_scaled = scaler.transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
-# ❌ ERRADO (causa data leakage)
-
+## ❌ ERRADO (causa data leakage)
 scaler.fit(X) # Vaza informação do teste
-\`\`\`
+```
 
 Esta metodologia garante que os resultados de **83.3%** sejam uma estimativa honesta do desempenho do modelo em dados novos.
 
@@ -141,11 +142,11 @@ O modelo foi avaliado no conjunto de teste de **60 amostras**.
 
 A acurácia sozinha é **insuficiente**. A matriz de confusão revela o custo dos erros.
 
-\`\`\`
+```
 Predito: Saudável Predito: Doente
 Real: Saudável 26 4
 Real: Doente 6 24
-\`\`\`
+```
 
 **Análise dos Erros:**
 
@@ -203,28 +204,29 @@ Este modelo serve como uma excelente **prova de conceito**.
 
 **1. Clone o repositório:**
 
-\`\`\`bash
+```bash
 git clone https://github.com/AlexandreJr16/Heart-Diseases.git
 cd Heart-Diseases
-\`\`\`
+```
 
 **2. Instale as dependências:**
 
-\`\`\`bash
+```bash
 pip install -r requirements.txt
-\`\`\`
+```
+
 
 Ou manualmente:
 
-\`\`\`bash
+```bash
 pip install pandas numpy tensorflow scikit-learn matplotlib seaborn
-\`\`\`
+```
 
 **3. Execute o notebook:**
 
-\`\`\`bash
+```bash
 jupyter notebook heart-diseases.ipynb
-\`\`\`
+```
 
 **4. Execute as células sequencialmente** (Shift + Enter).
 
