@@ -9,7 +9,7 @@
 > **Disciplina:** Fundamentos de Inteligência Artificial (FIA)  
 > **Instituição:** Universidade Federal do Amazonas (UFAM)  
 > **Professor:** Edjard Mota  
-> **Autores:** Alexandre Pereira de Souza Junior, Leonardo Brandão, Vithor Vitório  
+> **Autores:** Alexandre Pereira de Souza Junior, João Pedro Castro das Virgens, Leonardo Brandão do Amarante, Mateus Rodrigues Cavalcante, Vithor Junior da Encarnação Vitório  
 > **Período:** 2º Semestre de 2025
 
 ---
@@ -40,7 +40,7 @@ O objetivo deste projeto é desenvolver um **classificador binário** utilizando
 - **Tipo:** Classificação Binária Supervisionada
 - **Modelo:** Rede Neural Feedforward com 2 camadas ocultas
 - **Ativações:** ReLU (camadas ocultas), Sigmoid (saída)
-- **Regularização:** Dropout (25%) + L2 (0.001)
+- **Regularização:** Dropout (35%) + L2 (0.01) + Early Stopping
 - **Métricas:** Acurácia, Precisão, Recall e Matriz de Confusão
 
 ---
@@ -78,22 +78,20 @@ O projeto seguiu um pipeline rigoroso de Data Science.
 ### Arquitetura da Rede Neural
 
 ```
-
 Input Layer (13 features)
 ↓
-Dense(16, ReLU) + L2 Regularization + Dropout(0.25)
+Dense(16, ReLU) + L2 Regularization (0.01) + Dropout(0.35)
 ↓
-Dense(8, ReLU) + L2 Regularization + Dropout(0.25)
+Dense(8, ReLU) + L2 Regularization (0.01) + Dropout(0.35)
 ↓
 Output(1, Sigmoid) → Probabilidade [0, 1]
 ```
-
 
 **Configuração de Treinamento:**
 
 - **Otimizador:** Adam
 - **Função de Perda:** `binary_crossentropy`
-- **Épocas:** 100
+- **Épocas:** 100 (com Early Stopping - patience 20)
 - **Batch Size:** 10
 - **Validação:** Conjunto de teste
 
@@ -122,6 +120,22 @@ scaler.fit(X) # Vaza informação do teste
 ```
 
 Esta metodologia garante que os resultados de **83.3%** sejam uma estimativa honesta do desempenho do modelo em dados novos.
+
+### Ajustes de Regularização
+
+O modelo passou por duas iterações de ajuste:
+
+**Versão 1 (inicial):**
+
+- Dropout: 25%
+- L2: 0.001
+- Problema: val_loss começou a subir após época 10 (overfitting)
+
+**Versão 2 (final - implementada):**
+
+- Dropout: 35%
+- L2: 0.01
+- Resultado: val_loss estável, convergência rápida, overfitting eliminado
 
 ---
 
@@ -155,13 +169,24 @@ Real: Doente 6 24
 
 **Conclusão Médica:** O Recall de 78.6% (o modelo encontrou 24 de 30 pacientes doentes) é a métrica mais importante. Para uso clínico, este modelo serviria como **ferramenta de triagem**, mas o threshold de decisão (0.5) precisaria ser ajustado para reduzir os 6 Falsos Negativos, mesmo ao custo de aumentar os Falsos Positivos.
 
-### Análise do Treinamento (Overfitting)
+### Análise do Treinamento
 
-O modelo foi treinado por 100 épocas. Os gráficos de Acurácia/Perda mostraram:
+O modelo foi treinado com Early Stopping (patience=20), monitorando val_loss. Os gráficos de Acurácia/Perda mostraram:
 
-- **Convergência Rápida:** O modelo aprendeu os padrões principais nas primeiras 30-40 épocas.
-- **Overfitting Detectado:** Após 40 épocas, a perda de validação começou a subir enquanto a perda de treino continuava caindo.
-- **Conclusão:** Este comportamento é **esperado e normal** para um dataset pequeno (237 amostras de treino). As técnicas de regularização (Dropout + L2) foram eficazes em limitar o overfitting, permitindo ao modelo atingir 83.3% de acurácia.
+- **Convergência Rápida:** Com a regularização ajustada (Dropout 35%, L2 0.01), o modelo convergiu em 5-10 épocas.
+- **Estabilidade da Validação:** A perda de validação permaneceu estável ao longo do treinamento, indicando boa generalização.
+- **Efeito do Dropout:** Durante o treinamento, val_loss < train_loss é esperado, pois 35% dos neurônios são desativados no treino, mas todos estão ativos na validação.
+- **Conclusão:** As técnicas de regularização (Dropout 35% + L2 0.01 + Early Stopping) foram eficazes em prevenir overfitting e permitir ao modelo atingir 83.3% de acurácia.
+
+### Análise de Threshold
+
+Além do threshold padrão (0.5), foram testados valores de 0.3 a 0.7:
+
+- **Threshold 0.3-0.4:** Recall ~88-95%, reduz Falsos Negativos para 2-4, mas aumenta Falsos Positivos para 6-8
+- **Threshold 0.5 (atual):** Recall 78.6%, 6 FN, 4 FP - balanceamento padrão
+- **Threshold 0.6-0.7:** Recall ~71%, aumenta FN para 7-10, reduz FP para 2-3
+
+**Recomendação:** Para triagem médica, threshold 0.35-0.40 é preferível, priorizando sensibilidade sobre especificidade.
 
 ---
 
@@ -175,7 +200,9 @@ O modelo **cumpriu todos os requisitos técnicos** do projeto, entregando um cla
 
 1. **Ordem das Operações é Crítica:** O pipeline correto (Split → Fit → Transform) é fundamental para evitar data leakage e obter resultados válidos.
 2. **Métricas Contextuais > Acurácia:** Em medicina, o Recall e a análise dos Falsos Negativos são mais importantes que a acurácia total.
-3. **Overfitting é Esperado:** Em datasets pequenos, o overfitting não é um "erro", mas um fenômeno a ser monitorado e controlado com regularização.
+3. **Regularização Forte para Datasets Pequenos:** Com apenas 297 amostras, foi necessário usar Dropout 35% + L2 0.01 para prevenir overfitting.
+4. **Early Stopping Economiza Recursos:** O treinamento parou automaticamente quando a validação estabilizou, evitando épocas desnecessárias.
+5. **Análise de Threshold é Fundamental:** O threshold padrão (0.5) pode não ser ideal para aplicações médicas; threshold 0.35-0.40 seria mais apropriado para triagem.
 
 ### Aplicabilidade Clínica
 
@@ -183,12 +210,23 @@ Este modelo serve como uma excelente **prova de conceito**.
 
 **Uso Recomendado:**
 
-- Ferramenta de **triagem inicial** ou apoio à decisão médica (jamais como diagnóstico definitivo).
+- Ferramenta de **triagem inicial** em unidades básicas de saúde
+- Apoio à decisão médica (jamais como diagnóstico definitivo)
+- Priorização de pacientes para exames mais detalhados
 
 **Limitações:**
 
-- O número de 6 Falsos Negativos é alto para uso clínico autônomo.
-- O modelo exigiria validação em datasets maiores e ajuste de threshold para priorizar o Recall.
+- Dataset pequeno (297 amostras) limita a generalização
+- Com threshold 0.5, há 6 Falsos Negativos (20% dos doentes não detectados)
+- Requer validação externa em outros datasets
+- Não substitui avaliação médica profissional
+
+**Melhorias Sugeridas:**
+
+- Ajustar threshold para 0.35-0.40 (aumenta Recall para ~90%)
+- Validar em dataset maior e mais diverso
+- Implementar validação cruzada (k-fold)
+- Explorar outras arquiteturas (CNN, RNN, ensemble methods)
 
 ---
 
@@ -214,7 +252,6 @@ cd Heart-Diseases
 ```bash
 pip install -r requirements.txt
 ```
-
 
 Ou manualmente:
 
@@ -258,10 +295,12 @@ jupyter notebook heart-diseases.ipynb
 ## 👥 Autores
 
 **Alexandre Pereira de Souza Junior**  
-**Leonardo Brandão**  
-**Vithor Vitório**
+**João Pedro Castro das Virgens**  
+**Leonardo Brandão do Amarante**  
+**Mateus Rodrigues Cavalcante**  
+**Vithor Junior da Encarnação Vitório**
 
-**Instituição:** Universidade Federal de Alagoas (UFAL)  
+**Instituição:** Universidade Federal do Amazonas (UFAM)  
 **Disciplina:** Fundamentos de Inteligência Artificial (FIA)  
 **Professor:** Edjard Mota  
 **Período:** 2º Semestre de 2025
